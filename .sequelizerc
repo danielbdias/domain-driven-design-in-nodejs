@@ -1,0 +1,6 @@
+const path = require('path')
+
+module.exports = {
+  'config':          path.resolve('Infra', 'config', 'database.js'),
+  'migrations-path': path.resolve('Infra', 'migrations')
+}

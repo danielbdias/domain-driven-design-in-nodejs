@@ -1,0 +1,4 @@
+{
+  "private": true,
+  "main": "./graphqlType.js"
+}

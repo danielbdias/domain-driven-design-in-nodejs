@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+#coverage
+coverage
+integration-coverage
+.nyc_output
+
+#logs
+npm-debug.log*
+newrelic_agent.log
+
+#ide
+.idea
+
+yarn-error.log
+.DS_Store
