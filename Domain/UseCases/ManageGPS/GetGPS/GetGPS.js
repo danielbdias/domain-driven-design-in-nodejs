@@ -1,5 +1,5 @@
-const GPSRepository = require('../../../Infra/repositories/GPSRepository')
-const GPS = require('../../Entities/Address')
+const GPSRepository = require('../../../../Infra/repositories/GPSRepository')
+const GPS = require('../../../Entities/Address')
 
 const isNull = value => (value === null || value === undefined)
 

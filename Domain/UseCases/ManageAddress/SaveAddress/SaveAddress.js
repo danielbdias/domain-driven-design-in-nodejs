@@ -1,5 +1,5 @@
-const GPSRepository = require('../../../Infra/repositories/GPSRepository')
-const GPS = require('../../Entities/GPS')
+const AddressRepository = require('../../../../Infra/repositories/AddressRepository')
+const Address = require('../../../Entities/Address')
 
 function stringifyValidationError (validationErrors) {
   const formattedErrors = Object.keys(validationErrors)
@@ -8,8 +8,8 @@ function stringifyValidationError (validationErrors) {
   return JSON.stringify(formattedErrors)
 }
 
-module.exports = function SaveGPS ({ gps }) {
-  const entity = new GPS(gps)
+module.exports = function SaveAddress ({ address }) {
+  const entity = new Address(address)
 
   if (!entity.valid) {
     return Promise.reject(
@@ -17,5 +17,5 @@ module.exports = function SaveGPS ({ gps }) {
     )
   }
 
-  return GPSRepository.save(entity)
+  return AddressRepository.save(entity)
 }

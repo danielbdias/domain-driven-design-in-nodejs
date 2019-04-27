@@ -1,5 +1,5 @@
-const AddressRepository = require('../../../Infra/repositories/AddressRepository')
-const Address = require('../../Entities/Address')
+const AddressRepository = require('../../../../Infra/repositories/AddressRepository')
+const Address = require('../../../Entities/Address')
 
 module.exports = function DeleteAddress ({ id }) {
   const entity = new Address({ id })

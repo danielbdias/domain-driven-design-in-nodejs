@@ -1,5 +1,5 @@
-const AddressRepository = require('../../../Infra/repositories/AddressRepository')
-const Address = require('../../Entities/Address')
+const AddressRepository = require('../../../../Infra/repositories/AddressRepository')
+const Address = require('../../../Entities/Address')
 
 const isNull = value => (value === null || value === undefined)
 
