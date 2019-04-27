@@ -7,5 +7,6 @@ module.exports = async function TraceRoute ({ originId, destinationId, gpsType }
 
   const gps = await GPSRepository.getOneByType(gpsType)
 
-  return gps.calculate(origin, destination)
+  const route = gps.calculate(origin, destination)
+  return route
 }

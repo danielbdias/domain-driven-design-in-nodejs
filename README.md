@@ -5,9 +5,10 @@ Este código mostra um exemplo de estrutura de aplicação em Node.js modelada c
 As histórias que vamos modelar são:
 
 ````
-"O endereço deve ser usado no GPS para conseguir calcular a rota"
-"Eu devo poder salvar meu endereço de casa e do trabalho no aplicativo"
-"Quero ver o histórico das minhas últimas pesquisas"
+- "O endereço deve ser usado no GPS para conseguir calcular a rota"
+- "Eu devo poder salvar meu endereço de casa e do trabalho no aplicativo"
+- "Um endereço é único no sistema e deve ter um logradouro, número, CEP, cidade e tipo (residência ou trabalho)"
+- "Uma rota é um conjunto de instruções ordenadas, que descrevem a direção a seguir para o destino"
 
 ````
 
@@ -16,74 +17,98 @@ Os requisitos para rodar este código são:
 - Yarn package manager ([como instalar?](https://yarnpkg.com/pt-BR/docs/install#alternatives-stable))
 - Docker, com o docker-compose ([como instalar?](https://github.com/backend-br/como-instalar-xyz/tree/master/tutoriais/docker))
 
-### How to start the app
+### Como iniciar a aplicação?
 
-First, run `yarn install` on the root folder of this code, giving the following output:
+1. Rode o comando `yarn install` na pasta raiz do código para instalar as dependências;
+2. Inicie o banco de dados postgres em um container docker com `docker-compose up -d`
+3. Crie os dados iniciais do banco de dados com `yarn db:migrate`
+4. Inicie a aplicação com `yarn start`
 
-````
+### Como executar um caso de uso da aplicação
 
-➜  domain-driven-design-in-nodejs git:(master) ✗ yarn install
-yarn install v0.24.6
-[1/4] 🔍  Resolving packages...
-success Already up-to-date.
-✨  Done in 0.54s.
+Acesse a url http://localhost:4000 no seu navegador, e uma vez que o GraphQL Playground foi carregado, execute os seguintes passos:
 
-````
-
-After that, start a sample postgres database on Docker running: `docker-compose up -d`, giving the following results:
+1. Execute a mutation `SaveData` para inserir os dados no banco de dados:
 
 ````
+mutation SaveData {
+  saveAddress(address: {
+    name: "Rodovia Virgílio Varzea",
+    number: 400,
+    zipCode: "88032000",
+    city: "Florianópolis",
+    state: "Santa Catarina",
+    kind: "work"
+  }) {
+    id
+    name
+    number
+    complement
+    zipCode
+    city
+    state
+    kind
+  }
 
-➜  nodebr-meetup-ddd-demo git:(master) ✗ docker-compose up -d
-Starting nodebrmeetupddddemo_postgres_1 ...
-Starting nodebrmeetupddddemo_postgres_1 ... done
+  saveAddress(address: {
+    name: "Rua Gomes de Carvalho",
+    number: 1666,
+    complement: "Bloco 2",
+    zipCode: "04547006",
+    city: "São Paulo",
+    state: "São Paulo",
+    kind: "work"
+  }) {
+    id
+    name
+    number
+    complement
+    zipCode
+    city
+    state
+    kind
+  }
 
-````
+  saveGPS(gps: {
+    type: "gmaps"
+  }) {
+    type
+  }
 
-Finally, just run `yarn start` to run the application locally.
-
-````
-
-➜  nodebr-meetup-ddd-demo git:(master) ✗ yarn start
-yarn start v0.24.6
-$ NODE_ENV=development NODE_PATH=./ nodemon Infra/api/server.js
-[nodemon] 1.11.0
-[nodemon] to restart at any time, enter `rs`
-[nodemon] watching: *.*
-[nodemon] starting `node Infra/api/server.js`
-Connected to database tweets on localhost:5432
-Scup Care Billing Api is running on port 8000
-
-````
-
-### Execute the use case proposed here
-
-Just enter in http://localhost:8000/graphiql in your browser, and paste the following code in console:
-
-````
-
-mutation RetrieveTweetsFromTwitter {
-  retrieveTweets(hashtag: "nodejs", tweetsToRetrieve: 10)
-}
-
-query LookupTweets {
-  tweets {
-    text,
-    sentiment,
-    author,
-    published
+  saveGPS(gps: {
+    type: "troll"
+  }) {
+    type
   }
 }
 
 ````
 
-Pressing the play button, you can exec one of the commands:
+2. Execute a mutation `TraceRouteTroll` para executar o Use Case:
 
-- RetrieveTweetsFromTwitter: executes the described process
-- LookupTweets: see the saved tweets with a registered sentiment
+```
+query TraceRouteTroll {
+  traceRoute(originId: 11, destinationId: 12, gpsType: "troll") {
+    origin {
+      name
+      number
+      city
+    }
+    destination {
+      name
+      number
+      city
+    }
+    instructions {
+      order
+      description
+    }
+  }
+}
+```
 
-### Remarks
+### Observações
 
-Just remember that this is a sample of a code with the DDD theory with some adaptations.
+Este código é um exemplo de como aplicar a teoria do DDD em um projeto Node.js / Javascript, com algumas adaptações pertinentes a linguagem.
 
-Feel free to contact me in case of any questions at danielbpdias at gmail dot com.
+Sinta-se a vontade para contactar no caso de quaisquer dúvidas em [@danielbdias](https://twitter.com/danielbdias)
