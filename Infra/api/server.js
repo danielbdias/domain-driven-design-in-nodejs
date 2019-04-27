@@ -1,18 +1,12 @@
 const { ApolloServer } = require('apollo-server')
 
-const initDatabase = require('./init/database')
+const { typeDefs, resolvers } = require('./graphQL')
 
-initDatabase()
-  .then(_ => {
-    const { typeDefs, resolvers } = require('./graphQL')
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+})
 
-    // console.log(typeDefs[0].definitions)
+server.listen()
+  .then(({ url }) => console.log(`API running on ${url} ...`))
 
-    const server = new ApolloServer({
-      typeDefs,
-      resolvers
-    })
-
-    server.listen()
-      .then(({ url }) => console.log(`API running on ${url} ...`))
-  })

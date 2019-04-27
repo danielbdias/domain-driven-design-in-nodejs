@@ -5,9 +5,7 @@ const definitions = `
     "Retorna uma lista de endereços"
     addresses(
       "Identificador do endereço no sistema (filtro opcional)"
-      id: Int,
-      "Opções de configuração da query"
-      queryOptions: AddressQueryOptions
+      id: Int
     ): [Address]
   }
 `

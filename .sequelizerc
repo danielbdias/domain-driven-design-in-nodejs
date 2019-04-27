@@ -1,6 +1,15 @@
 const path = require('path')
 
 module.exports = {
-  'config':          path.resolve('Infra', 'config', 'database.js'),
+  'config': {
+    host: process.env.DATABASE_HOST || 'localhost',
+    database: 'example',
+    username: 'root',
+    password: 'password',
+    port: 5432,
+    seederStorage: 'sequelize',
+    logging: console.log,
+    dialect: 'postgres'
+  },
   'migrations-path': path.resolve('Infra', 'migrations')
 }

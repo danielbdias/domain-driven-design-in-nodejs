@@ -60,7 +60,6 @@
     "sequelize": "^5.7.6",
     "sequelize-cli": "^5.4.0",
     "speck-entity": "^0.2.1",
-    "speck-sequelize-repository": "^1.1.0-alpha",
     "winston": "^3.2.1"
   },
   "devDependencies": {

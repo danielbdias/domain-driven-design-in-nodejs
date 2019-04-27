@@ -15,6 +15,7 @@ const definitions = `
   }
 
   input AddressInput {
+    id: Int
     name: String!
     number: Int
     complement: String
@@ -22,11 +23,6 @@ const definitions = `
     city: String!
     state: String!
     kind: String!
-  }
-
-  input AddressQueryOptions {
-    first: Int
-    filter: AddressInput
   }
 
   type GPS {
