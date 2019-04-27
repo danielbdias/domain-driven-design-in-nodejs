@@ -6,12 +6,12 @@ const Address = require('../Entities/Address')
 const RouteInstruction = require('./RouteInstruction')
 
 function sanitizeData (data) {
-  if (data.start instanceof Address) {
-    Object.assign(data, { start: new Address(data.start) })
+  if (data.origin instanceof Address) {
+    Object.assign(data, { origin: new Address(data.origin) })
   }
 
-  if (data.end instanceof Address) {
-    Object.assign(data, { end: new Address(data.end) })
+  if (data.destination instanceof Address) {
+    Object.assign(data, { destination: new Address(data.destination) })
   }
 
   return data
@@ -24,8 +24,8 @@ class Route extends ValueObject {
 }
 
 Route.SCHEMA = objectAdapter({
-  start: Joi.object().type(Address).required(),
-  end: Joi.object().type(Address).required(),
+  origin: Joi.object().type(Address).required(),
+  destination: Joi.object().type(Address).required(),
   instructions: Joi.array().items(Joi.object().type(RouteInstruction).required()).required()
 })
 

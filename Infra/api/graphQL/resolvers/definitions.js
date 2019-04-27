@@ -3,7 +3,8 @@ const graphqlResolverToUseCase = require('../../../helpers/graphqlResolverToUseC
 module.exports = {
   Query: {
     addresses: graphqlResolverToUseCase(require('../../../../Domain/UseCases/GetAddresses')),
-    gps: graphqlResolverToUseCase(require('../../../../Domain/UseCases/GetGPS'))
+    gps: graphqlResolverToUseCase(require('../../../../Domain/UseCases/GetGPS')),
+    traceRoute: graphqlResolverToUseCase(require('../../../../Domain/UseCases/TraceRoute')),
   },
   Mutation: {
     saveAddress: graphqlResolverToUseCase(require('../../../../Domain/UseCases/SaveAddress')),

@@ -36,8 +36,8 @@ const definitions = `
   }
 
   type Route {
-    start: Address
-    end: Address
+    origin: Address
+    destination: Address
     instructions: [RouteInstruction]
   }
 

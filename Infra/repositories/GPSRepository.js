@@ -63,6 +63,20 @@ const GPSRepository = {
     const result = await PostgresClient.query(sql)
 
     return result.map(item => new GPS(item))
+  },
+  async getOneByType(type) {
+    const sql = `
+      SELECT
+        "id", "type"
+      FROM
+        "public"."GPS"
+      WHERE
+        "type" = $1
+      LIMIT 1;`
+
+    const [ result ] = await PostgresClient.query(sql, [ type ])
+
+    return new GPS(result)
   }
 }
 
