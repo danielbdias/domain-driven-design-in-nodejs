@@ -12,6 +12,12 @@ const definitions = `
       "Identificador do endereço no sistema"
       id: Int!
     ): Boolean
+
+    "Cria / altera um GPS"
+    saveGPS(
+      "Dados do GPS (id obrigário apenas em caso de atualização)"
+      gps: GPSInput!
+    ): GPS
   }
 `
 

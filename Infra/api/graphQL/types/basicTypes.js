@@ -32,7 +32,7 @@ const definitions = `
 
   input GPSInput {
     id: Int
-    name: String!
+    type: String!
   }
 
   type Route {

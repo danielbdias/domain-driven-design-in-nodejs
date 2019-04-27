@@ -7,6 +7,12 @@ const definitions = `
       "Identificador do endereço no sistema (filtro opcional)"
       id: Int
     ): [Address]
+
+    "Retorna uma lista de GPS"
+    gps(
+      "Identificador do GPS no sistema (filtro opcional)"
+      id: Int
+    ): [GPS]
   }
 `
 
