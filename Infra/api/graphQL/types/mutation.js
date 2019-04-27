@@ -1,4 +1,4 @@
-const graphqlType = require('../../../helpers/graphqlType')
+const gql = require('apollo-server').gql
 
 const definitions = `
   type Mutation {
@@ -15,4 +15,4 @@ const definitions = `
   }
 `
 
-module.exports = graphqlType({ definitions })
+module.exports = gql(definitions)

@@ -1,17 +1,29 @@
-const dependencies = {
-  GetEntities: require('../../Services/CrudUseCasesLogic/GetEntities')
-}
+const AddressRepository = require('../../../Infra/repositories/AddressRepository')
+const Address = require('../../Entities/Address')
 
-module.exports = function GetAddresses ({ id, queryOptions }, injection) {
-  const { GetEntities } = Object.assign({}, dependencies, injection)
+const isNull = value => (value === null || value === undefined)
 
-  return GetEntities(
-    {
-      repository: require('../../../Infra/repositories/AddressRepository'),
-      entityType: require('../../Entities/Address'),
-      entityKey: id,
-      queryOptions
-    },
-    injection
-  )
+module.exports = function GetAddresses ({ id, queryOptions }) {
+  if (id) {
+    return AddressRepository.findOneById(id)
+                            .then(result => [result])
+  }
+
+  const options = {}
+
+  if (queryOptions && !isNull(queryOptions.first)) {
+    options.limit = queryOptions.first
+  }
+
+  if (queryOptions && queryOptions.filter) {
+    const typedFilter = new Address(queryOptions.filter)
+
+    const filter = Object.keys(queryOptions.filter)
+      .map(key => ({ [key]: typedFilter[key] }))
+      .reduce((acc, item) => Object.assign({}, item), {})
+
+    return AddressRepository.findAllByCriterias(filter, options)
+  }
+
+  return AddressRepository.findAllBy(options)
 }

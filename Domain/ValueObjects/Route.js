@@ -29,12 +29,4 @@ Route.SCHEMA = objectAdapter({
   instructions: Joi.array().items(Joi.object().type(RouteInstruction).required()).required()
 })
 
-Route.TYPE_DOC = 'Representa uma rota de uma origem a um destino'
-
-Route.FIELD_DOCS = {
-  start: 'Endereço de origem da rota',
-  end: 'Endereço de destino da rota',
-  instructions: 'Instruções de navegação da rota'
-}
-
 module.exports = Route

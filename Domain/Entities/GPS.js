@@ -10,15 +10,7 @@ class GPS extends Entity {
 
 GPS.SCHEMA = objectAdapter({
   id: Joi.number().integer(),
-  type: Joi.string().required(),
-  createdAt: Joi.date().timestamp(),
-  updatedAt: Joi.date().timestamp()
+  type: Joi.string().required()
 })
-
-GPS.TYPE_DOC = 'Representa uma fonte de dados de geolocalização (Google Maps, Waze, etc.)'
-
-GPS.FIELD_DOCS = {
-  type: 'Tipo de fonte de Geolocalização que será utilizado',
-}
 
 module.exports = GPS

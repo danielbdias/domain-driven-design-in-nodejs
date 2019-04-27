@@ -1,16 +1,21 @@
-const dependencies = {
-  SaveEntity: require('../../Services/CrudUseCasesLogic/SaveEntity')
+const AddressRepository = require('../../../Infra/repositories/AddressRepository')
+const Address = require('../../Entities/Address')
+
+function stringifyValidationError (validationErrors) {
+  const formattedErrors = Object.keys(validationErrors)
+    .reduce((accumulator, fieldName) => accumulator.concat(validationErrors[fieldName].errors), [])
+
+  return JSON.stringify(formattedErrors)
 }
 
-module.exports = function SaveAddress ({ address: entity }, injection) {
-  const { SaveEntity } = Object.assign({}, dependencies, injection)
+module.exports = function SaveAddress ({ address }) {
+  const entity = new Address(address)
 
-  return SaveEntity(
-    {
-      repository: require('../../../Infra/repositories/AddressRepository'),
-      entityType: require('../../Entities/Address'),
-      entityData: entity
-    },
-    injection
-  )
+  if (!entity.valid) {
+    return Promise.reject(
+      new Error(`Entity ${EntityType.name} has validation problems! Errors: ${stringifyValidationError(entity.errors)}`)
+    )
+  }
+
+  return AddressRepository.save(entity)
 }

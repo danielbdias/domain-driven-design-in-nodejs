@@ -1,16 +1,9 @@
-const dependencies = {
-  DeleteEntity: require('../../Services/CrudUseCasesLogic/DeleteEntity')
-}
+const AddressRepository = require('../../../Infra/repositories/AddressRepository')
+const Address = require('../../Entities/Address')
 
-module.exports = function DeleteAddress ({ id }, injection) {
-  const { DeleteEntity } = Object.assign({}, dependencies, injection)
+module.exports = function DeleteAddress ({ id }) {
+  const entity = new Address({ id })
 
-  return DeleteEntity(
-    {
-      repository: require('../../../Infra/repositories/AddressRepository'),
-      entityType: require('../../Entities/Address'),
-      entityData: { id }
-    },
-    injection
-  )
+  AddressRepository.delete(entity)
+  return true
 }

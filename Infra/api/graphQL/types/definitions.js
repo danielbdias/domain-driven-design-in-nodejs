@@ -1,8 +1,5 @@
 module.exports = [
-  require('./basicTypes/address'),
-  // require('./basicTypes/gps'),
-  // require('./basicTypes/route'),
-  // require('./basicTypes/routeInstruction'),
+  require('./basicTypes'),
   require('./query'),
   require('./mutation')
 ]

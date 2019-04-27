@@ -9,11 +9,4 @@ RouteInstruction.SCHEMA = objectAdapter({
   order: Joi.number().integer().positive().required()
 })
 
-RouteInstruction.TYPE_DOC = 'Instrução de uma rota no GPS'
-
-RouteInstruction.FIELD_DOCS = {
-  description: 'Descrição da instrução',
-  order: 'Ordem da instrução a ser executada'
-}
-
 module.exports = RouteInstruction
