@@ -2,6 +2,8 @@
 
 Este código mostra um exemplo de estrutura de aplicação em Node.js modelada com alguns conceitos de Domain Driven Design.
 
+Mais detalhes sobre a base deste projeto podem ser vistos [nesta apresentação](https://speakerdeck.com/danielbdias/modelando-sua-aplicacao-node-dot-js-com-domain-driven-design). 
+
 As histórias que vamos modelar são:
 
 ````
