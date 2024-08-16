@@ -1,36 +1,36 @@
-# Domain Driven Design no Node.js
+# Domain Driven Design with Node.js
 
-Este código mostra um exemplo de estrutura de aplicação em Node.js modelada com alguns conceitos de Domain Driven Design.
+This code shows an example of an application structure in Node.js modeled with some Domain Driven Design concepts.
 
-Mais detalhes sobre a base deste projeto podem ser vistos [nesta apresentação](https://speakerdeck.com/danielbdias/modelando-sua-aplicacao-node-dot-js-com-domain-driven-design). 
+More details about the basis of this project can be seen [in this presentation in portuguese](https://speakerdeck.com/danielbdias/modelando-sua-aplicacao-node-dot-js-com-domain-driven-design).
 
-As histórias que vamos modelar são:
+The user stories that we will model are:
 
-````
-- "O endereço deve ser usado no GPS para conseguir calcular a rota"
-- "Eu devo poder salvar meu endereço de casa e do trabalho no aplicativo"
-- "Um endereço é único no sistema e deve ter um logradouro, número, CEP, cidade e tipo (residência ou trabalho)"
-- "Uma rota é um conjunto de instruções ordenadas, que descrevem a direção a seguir para o destino"
+```
+- "The address must be used in the GPS to calculate the route"
+- "I must be able to save my home and work addresses in the application"
+- "An address is unique in the system and must have a street, number, zip code, city, and type (home or work)"
+- "A route is a set of ordered instructions that describe the direction to follow to the destination"
 
-````
+```
 
-Os requisitos para rodar este código são:
-- Node.js 12 ([como instalar?](https://github.com/backend-br/como-instalar-xyz/tree/master/tutoriais/nodejs))
-- Yarn package manager ([como instalar?](https://yarnpkg.com/pt-BR/docs/install#alternatives-stable))
-- Docker, com o docker-compose ([como instalar?](https://github.com/backend-br/como-instalar-xyz/tree/master/tutoriais/docker))
+The requirements to run this code are:
+- Node.js 12 ([how to install?](https://github.com/backend-br/como-instalar-xyz/tree/master/tutoriais/nodejs))
+- Yarn package manager ([how to install?](https://yarnpkg.com/pt-BR/docs/install#alternatives-stable))
+- Docker, with docker-compose ([how to install?](https://github.com/backend-br/como-instalar-xyz/tree/master/tutoriais/docker))
 
-### Como iniciar a aplicação?
+### How to start the application?
 
-1. Rode o comando `yarn install` na pasta raiz do código para instalar as dependências;
-2. Inicie o banco de dados postgres em um container docker com `docker-compose up -d`
-3. Crie os dados iniciais do banco de dados com `yarn db:migrate`
-4. Inicie a aplicação com `yarn start`
+1. Run the `yarn install` command in the code root folder to install the dependencies;
+2. 2. Start the Postgres database in a docker container with `docker-compose up -d`
+3. Create the initial database data with `yarn db:migrate`
+4. Start the application with `yarn start`
 
-### Como executar um caso de uso da aplicação
+### How to run an application use case
 
-Acesse a url http://localhost:4000 no seu navegador, e uma vez que o GraphQL Playground foi carregado, execute os seguintes passos:
+Access the url http://localhost:4000 in your browser, and once the GraphQL Playground has been loaded, perform the following steps:
 
-1. Execute a mutation `SaveData` para inserir os dados no banco de dados:
+1. Run the `SaveData` mutation to insert the data into the database:
 
 ````
 mutation SaveData {
@@ -86,7 +86,7 @@ mutation SaveData {
 
 ````
 
-2. Execute a mutation `TraceRouteTroll` para executar o Use Case:
+2. Execute the mutation `TraceRouteTroll` to run the use case:
 
 ```
 query TraceRouteTroll {
@@ -108,9 +108,8 @@ query TraceRouteTroll {
   }
 }
 ```
+### Notes
 
-### Observações
+This code is an example of how to apply DDD theory to a Node.js / Javascript project, with some adaptations relevant to the language.
 
-Este código é um exemplo de como aplicar a teoria do DDD em um projeto Node.js / Javascript, com algumas adaptações pertinentes a linguagem.
-
-Sinta-se a vontade para contactar no caso de quaisquer dúvidas em [@danielbdias](https://twitter.com/danielbdias)
+Feel free to contact me if you have any questions at [@danielbdias](https://twitter.com/danielbdias)
